@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html ng-app="myProfile">
+	<head>
+		<meta charset="UTF-8">
+		<title>Your profile</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<style>
+			body{padding:100px;padding-top: 70px}
+			h1{padding-bottom:20px;}
+			textarea.form-control{resize:none;	font-size:18px; height:150px;	}
+			.lead{margin-bottom: 10px}
+			input[type="text"]{font-size:18px;}
+		</style>
+	</head>
+	<body>
+		<div class="container" ng-controller="profileController">
+			<h1>Profile form:</h1>
+			<form>
+				<div class="form-group">
+					First name: <input ng-model="firstname" type="text" class="form-control" placeholder="First name">
+					<br>
+					Last name: <input ng-model="lastname" type="text" class="form-control" placeholder="Last name">
+					<br>
+					About: <textarea ng-model="about" class="form-control" rows=""></textarea>
+					<br>
+					Add hobby: <input placeholder="Add hobby" type="text" class="form-control" ng-model="addOne">			
+					<br>
+					<p class="lead bg-danger">{{errMsg}}</p>
+					<button ng-click="addHobby()" class="btn btn-success" >Add</button>
+					<div><h3>Hobbies:</h3>
+						<ul >
+							<li ng-repeat="hobby in hobbies" class="lead">{{hobby}}. <button class="btn-xs btn-danger" ng-click="removeItem($index)"> Delete hobby</button></li>
+						</ul>
+					</div>
+				</div>
+			</form>
+			<button ng-click="showInfo=!showInfo" class="btn btn-info" >Show/Hide info</button>
+			<div ng-hide="showInfo">
+				<h3 class="bg-info">Your information</h3>
+				<p class="lead">
+					Your first name: {{firstname}}
+				</p>
+				<p class="lead">
+					Your last name: {{lastname}}			
+				</p>
+				<p class="lead">
+					About you: {{about}}
+				</p>
+				<h3 class="bg-success">Your Hobbies:</h3><ul><li ng-repeat="hobby in hobbies" class="lead">  {{hobby}}. </li></ul>
+			</div>
+		</div>
+		<script src="controller.js"></script>
+		<script src="app.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	</body>
+</html>
